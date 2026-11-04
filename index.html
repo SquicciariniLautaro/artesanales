@@ -1,0 +1,316 @@
+<!DOCTYPE html>
+<html lang="es" data-bs-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Artesanales — Quesos de cabra y fiambres artesanales en Jujuy</title>
+    <meta name="description" content="Quesos de cabra, salames y fiambres artesanales en San Salvador de Jujuy. Elegí lo que querés, armá tu pedido y envialo por WhatsApp.">
+    <meta name="theme-color" content="#FFF1DA">
+
+    <!-- Cómo se ve el link al compartirlo por WhatsApp o Instagram -->
+    <meta property="og:type" content="website">
+    <meta property="og:locale" content="es_AR">
+    <meta property="og:title" content="Artesanales — Sabores de tradición">
+    <meta property="og:description" content="Quesos de cabra y fiambres artesanales. Armá tu pedido y envialo por WhatsApp.">
+    <meta property="og:url" content="https://squicciarinilautaro.github.io/artesanales/">
+    <meta property="og:image" content="https://squicciarinilautaro.github.io/artesanales/img/compartir.jpg">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+
+    <link rel="icon" href="img/favicon.png" type="image/png">
+    <link rel="apple-touch-icon" href="img/icono-180.png">
+
+    <!-- La animación de entrada se muestra una sola vez por visita -->
+    <script>
+        try {
+            if (sessionStorage.getItem('artesanales-visto')) document.documentElement.classList.add('sin-preloader');
+            sessionStorage.setItem('artesanales-visto', '1');
+        } catch (e) {}
+    </script>
+
+    <!-- Bootstrap CSS CDN -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+
+    <!-- Google Fonts: Dancing Script (como el logo) para títulos y Montserrat (como "Sabores de tradición") para el texto -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@600;700&family=Montserrat:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <a class="visually-hidden-focusable saltar" href="#catalogo">Saltar a los productos</a>
+
+    <!-- ANIMACIÓN DE ENTRADA: se oculta sola por CSS, no depende de JavaScript -->
+    <div class="preloader" aria-hidden="true">
+        <img class="preloader-logo" src="img/logo.jpg" alt="" width="220" height="220">
+        <span class="preloader-linea"></span>
+    </div>
+
+    <!-- Se ve solo mientras el panel está en modo prueba en este navegador -->
+    <div id="aviso-prueba" class="aviso-prueba d-none" role="status">
+        <div class="container d-flex flex-wrap align-items-center justify-content-center gap-2">
+            <span><strong>Modo prueba:</strong> estás viendo cambios que existen solo en este navegador.</span>
+            <button type="button" id="btn-salir-prueba" class="btn btn-sm btn-tinta">Ver el catálogo real</button>
+        </div>
+    </div>
+
+    <header class="barra-superior sticky-top">
+        <div class="container d-flex justify-content-between align-items-center h-100">
+            <a class="marca" href="./">
+                <img src="img/logo.jpg" alt="" width="44" height="44" class="marca-logo">
+                <span class="marca-nombre">Artesanales</span>
+            </a>
+            <button class="btn btn-outline-salame btn-pedido d-flex align-items-center gap-2" type="button" data-bs-toggle="offcanvas" data-bs-target="#carritoOffcanvas" aria-controls="carritoOffcanvas">
+                <svg class="icono" viewBox="0 0 16 16" aria-hidden="true"><path d="M8 1a2.5 2.5 0 0 1 2.5 2.5V4h-5v-.5A2.5 2.5 0 0 1 8 1m3.5 3v-.5a3.5 3.5 0 1 0-7 0V4H1v10a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V4zM2 5h12v9a1 1 0 0 1-1 1H3a1 1 0 0 1-1-1z"/></svg>
+                <span class="d-none d-sm-inline">Mi pedido</span>
+                <span id="cart-count" class="badge contador">0</span>
+                <span class="visually-hidden">productos en el pedido</span>
+            </button>
+        </div>
+    </header>
+
+    <main>
+        <section class="portada">
+            <div class="container">
+                <div class="portada-grilla">
+                    <div class="portada-texto">
+                        <p class="portada-firma">Sabores de tradición</p>
+                        <h1 class="portada-titulo">Quesos de cabra y fiambres <span class="text-salame">artesanales</span></h1>
+                        <p class="portada-bajada">Hechos como antes, con tiempo y buena materia prima. Elegí lo que querés, armá tu pedido y envialo por WhatsApp.</p>
+
+                        <ul class="portada-datos list-unstyled">
+                            <li>
+                                <span id="estado-local" class="estado-local">
+                                    <span class="estado-punto" aria-hidden="true"></span>
+                                    <span id="estado-texto">Lunes a viernes 8 a 17 hs · Sábados 8 a 13 hs</span>
+                                </span>
+                            </li>
+                            <li>
+                                <a id="portada-mapa" class="dato-enlace" href="#" target="_blank" rel="noopener">
+                                    <svg class="icono" viewBox="0 0 16 16" aria-hidden="true"><path d="M8 16s6-5.686 6-10A6 6 0 0 0 2 6c0 4.314 6 10 6 10m0-7a3 3 0 1 1 0-6 3 3 0 0 1 0 6"/></svg>
+                                    Güemes 1253 · S. S. de Jujuy
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="portada-logo" aria-hidden="true">
+                        <img src="img/logo.jpg" alt="" width="320" height="320">
+                    </div>
+                </div>
+
+                <div class="buscador">
+                    <svg class="icono buscador-lupa" viewBox="0 0 16 16" aria-hidden="true"><path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001q.044.06.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1 1 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0"/></svg>
+                    <input type="search" id="buscador" class="form-control" placeholder="Buscar: queso, salame, hierbas…" aria-label="Buscar productos" autocomplete="off" enterkeyhint="search">
+                </div>
+            </div>
+        </section>
+
+        <!-- Filtros: quedan pegados arriba al bajar. Los botones salen de las categorías con productos. -->
+        <nav class="filtros-barra sticky-top" aria-label="Categorías">
+            <div class="container">
+                <div class="filtros" id="filtros">
+                    <button type="button" class="btn-filtro active" data-categoria="Todos" aria-pressed="true">Todos</button>
+                </div>
+            </div>
+        </nav>
+
+        <section id="catalogo" class="container catalogo" aria-label="Productos">
+            <!-- Para lectores de pantalla: cuántos productos quedaron después de buscar o filtrar -->
+            <p id="resultado-busqueda" class="visually-hidden" role="status"></p>
+
+            <div class="row g-3 g-md-4" id="catalogo-container">
+                <!-- Las tarjetas se inyectan con JavaScript -->
+            </div>
+
+            <div id="sin-resultados" class="estado-vacio d-none">
+                <p class="estado-titulo">No encontramos nada</p>
+                <p id="sin-resultados-texto" class="texto-suave"></p>
+                <button type="button" id="btn-limpiar-busqueda" class="btn btn-outline-salame">Ver todos los productos</button>
+            </div>
+
+            <div id="error-carga" class="estado-vacio d-none">
+                <p class="estado-titulo">No pudimos cargar los productos</p>
+                <p class="texto-suave">Revisá tu conexión y probá de nuevo.</p>
+                <button type="button" id="btn-reintentar" class="btn btn-salame">Reintentar</button>
+            </div>
+
+            <noscript>
+                <p class="estado-vacio">Para ver el catálogo necesitás activar JavaScript en tu navegador.</p>
+            </noscript>
+        </section>
+    </main>
+
+    <footer class="pie">
+        <div class="pie-principal">
+            <div class="container">
+                <div class="pie-grilla">
+                    <div class="pie-columna pie-columna-logo">
+                        <img src="img/logo.jpg" alt="Artesanales, sabores de tradición" width="140" height="140" class="pie-logo" loading="lazy">
+                    </div>
+
+                    <div class="pie-columna">
+                        <h2 class="pie-titulo">¿Antojo de algo rico?</h2>
+                        <p class="pie-texto">Elegí tus productos, armá tu pedido y mandalo directo a nuestro WhatsApp. Retirás en el local o te lo llevamos.</p>
+                        <ul class="pie-datos list-unstyled">
+                            <li>
+                                <svg class="icono" viewBox="0 0 16 16" aria-hidden="true"><path d="M8 3.5a.5.5 0 0 0-1 0V9a.5.5 0 0 0 .252.434l3.5 2a.5.5 0 0 0 .496-.868L8 8.71z"/><path d="M8 16A8 8 0 1 0 8 0a8 8 0 0 0 0 16m7-8A7 7 0 1 1 1 8a7 7 0 0 1 14 0"/></svg>
+                                <span>Lunes a viernes 8 a 17 hs<br>Sábados 8 a 13 hs</span>
+                            </li>
+                            <li>
+                                <svg class="icono" viewBox="0 0 16 16" aria-hidden="true"><path d="M8 16s6-5.686 6-10A6 6 0 0 0 2 6c0 4.314 6 10 6 10m0-7a3 3 0 1 1 0-6 3 3 0 0 1 0 6"/></svg>
+                                <a id="pie-mapa" href="#" target="_blank" rel="noopener">Güemes 1253, S. S. de Jujuy</a>
+                            </li>
+                        </ul>
+                    </div>
+
+                    <div class="pie-columna">
+                        <h2 class="pie-titulo">Seguinos</h2>
+                        <div class="pie-botones">
+                            <a id="pie-instagram" href="#" target="_blank" rel="noopener" class="boton-secundario">
+                                <svg class="icono icono-trazo text-salame" viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="0.6" fill="currentColor"/></svg>
+                                Seguinos en Instagram
+                            </a>
+                            <a id="pie-whatsapp" href="#" target="_blank" rel="noopener" class="boton-whatsapp">
+                                <svg class="icono" viewBox="0 0 16 16" aria-hidden="true"><path d="M13.601 2.326A7.85 7.85 0 0 0 7.994 0C3.627 0 .068 3.558.064 7.926c0 1.399.366 2.76 1.057 3.965L0 16l4.204-1.102a7.9 7.9 0 0 0 3.79.965h.004c4.368 0 7.926-3.558 7.93-7.93A7.9 7.9 0 0 0 13.6 2.326zM7.994 14.521a6.6 6.6 0 0 1-3.356-.92l-.24-.144-2.494.654.666-2.433-.156-.251a6.56 6.56 0 0 1-1.007-3.505c0-3.626 2.957-6.584 6.591-6.584a6.56 6.56 0 0 1 4.66 1.931 6.56 6.56 0 0 1 1.928 4.66c-.004 3.639-2.961 6.592-6.592 6.592m3.615-4.934c-.197-.099-1.17-.578-1.353-.646-.182-.065-.315-.099-.445.099-.133.197-.513.646-.627.775-.114.133-.232.148-.43.05-.197-.1-.836-.308-1.592-.985-.59-.525-.985-1.175-1.103-1.372-.114-.198-.011-.304.088-.403.087-.088.197-.232.296-.346.1-.114.133-.198.198-.33.065-.134.034-.248-.015-.347-.05-.099-.445-1.076-.612-1.47-.16-.389-.323-.335-.445-.34-.114-.007-.247-.007-.38-.007a.73.73 0 0 0-.529.247c-.182.198-.691.677-.691 1.654s.71 1.916.81 2.049c.098.133 1.394 2.132 3.383 2.992.47.205.84.326 1.129.418.475.152.904.129 1.246.08.38-.058 1.171-.48 1.338-.943.164-.464.164-.86.114-.943-.049-.084-.182-.133-.38-.232"/></svg>
+                                Escribinos
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="pie-legal">
+                    <p class="mb-0">&copy; <span id="pie-anio">2026</span> Artesanales. Todos los derechos reservados.</p>
+                    <!-- Entrada al panel: casi invisible para el cliente, pero a mano para el dueño. -->
+                    <a href="admin.html" class="pie-candado" aria-label="Acceso administrador" title="Acceso administrador">
+                        <svg class="icono icono-trazo" viewBox="0 0 24 24" aria-hidden="true"><rect x="5" y="11" width="14" height="9" rx="2"/><path d="M8 11V8a4 4 0 0 1 8 0v3"/></svg>
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <!-- Firma de Lambda Soluciones: negro, λ amarilla con brillo y grilla de puntos -->
+        <a href="https://www.instagram.com/lambdasoluciones" target="_blank" rel="noopener noreferrer" class="firma-lambda" aria-label="Sitio realizado por Lambda Soluciones Digitales. Ver su Instagram">
+            <span class="firma-puntos" aria-hidden="true"></span>
+            <span class="container firma-contenido">
+                <span class="firma-marca">
+                    <span class="firma-lambda-letra" aria-hidden="true">λ</span>
+                    <span class="firma-textos">
+                        <span class="firma-bajada">Diseño y desarrollo</span>
+                        <span class="firma-nombre">Lambda <span>Soluciones Digitales</span></span>
+                    </span>
+                </span>
+                <span class="firma-pastilla">
+                    <svg class="icono icono-trazo" viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="0.6" fill="currentColor"/></svg>
+                    @lambdasoluciones
+                </span>
+            </span>
+        </a>
+    </footer>
+
+    <!-- PEDIDO (panel lateral) -->
+    <div class="offcanvas offcanvas-end pedido" tabindex="-1" id="carritoOffcanvas" aria-labelledby="pedido-titulo">
+        <div class="offcanvas-header">
+            <h2 class="offcanvas-title" id="pedido-titulo">Tu pedido</h2>
+            <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Cerrar"></button>
+        </div>
+        <div class="offcanvas-body">
+
+            <div id="pedido-vacio" class="estado-vacio">
+                <p class="estado-titulo">Tu pedido está vacío</p>
+                <p class="texto-suave">Agregá productos del catálogo y los vas a ver acá.</p>
+                <button type="button" class="btn btn-salame" data-bs-dismiss="offcanvas">Ver productos</button>
+            </div>
+
+            <div id="pedido-lleno" class="d-none">
+                <ul id="carrito-items" class="list-unstyled mb-2">
+                    <!-- Los productos del pedido se inyectan con JavaScript -->
+                </ul>
+                <div class="text-end">
+                    <button type="button" id="btn-vaciar" class="btn btn-sm btn-link texto-suave">Vaciar pedido</button>
+                </div>
+
+                <p class="pedido-total">
+                    <span>Total</span> <span id="carrito-total" class="text-salame">$0</span>
+                </p>
+
+                <form id="form-entrega" novalidate>
+                    <h3 class="pedido-subtitulo">Tus datos</h3>
+
+                    <div class="mb-3">
+                        <label for="entrega-nombre" class="form-label">Tu nombre</label>
+                        <input type="text" class="form-control" id="entrega-nombre" maxlength="60" autocomplete="name" required>
+                        <div class="invalid-feedback">Decinos tu nombre para saber de quién es el pedido.</div>
+                    </div>
+
+                    <fieldset class="mb-3">
+                        <legend class="form-label">¿Cómo lo recibís?</legend>
+                        <div id="entrega-formas" class="opciones">
+                            <!-- Las opciones salen de js/config.js -->
+                        </div>
+                    </fieldset>
+
+                    <div id="grupo-envio">
+                        <div class="mb-3">
+                            <label for="entrega-direccion" class="form-label">Dirección</label>
+                            <input type="text" class="form-control" id="entrega-direccion" maxlength="120" placeholder="Calle, número y barrio" autocomplete="street-address" required>
+                            <div class="invalid-feedback">Necesitamos la dirección para llevarte el pedido.</div>
+                        </div>
+
+                        <div class="mb-3">
+                            <button type="button" id="btn-ubicacion" class="btn btn-sm btn-outline-salame d-inline-flex align-items-center gap-2">
+                                <svg class="icono" viewBox="0 0 16 16" aria-hidden="true"><path d="M8 16s6-5.686 6-10A6 6 0 0 0 2 6c0 4.314 6 10 6 10m0-7a3 3 0 1 1 0-6 3 3 0 0 1 0 6"/></svg>
+                                <span id="btn-ubicacion-texto">Sumar mi ubicación actual</span>
+                            </button>
+                            <div id="ubicacion-estado" class="form-text" role="status"></div>
+                        </div>
+                    </div>
+
+                    <div id="grupo-retiro" class="aviso-retiro mb-3">
+                        <svg class="icono" viewBox="0 0 16 16" aria-hidden="true"><path d="M8 16s6-5.686 6-10A6 6 0 0 0 2 6c0 4.314 6 10 6 10m0-7a3 3 0 1 1 0-6 3 3 0 0 1 0 6"/></svg>
+                        <span>Retirás en <strong>Güemes 1253</strong>. Lunes a viernes de 8 a 17 hs y sábados de 8 a 13 hs.</span>
+                    </div>
+
+                    <div class="mb-3">
+                        <label for="entrega-indicaciones" class="form-label">Aclaraciones <span class="texto-suave">(opcional)</span></label>
+                        <textarea class="form-control" id="entrega-indicaciones" rows="2" maxlength="250" placeholder="Cortado en fetas, horario en que pasás a retirar, entre qué calles…"></textarea>
+                    </div>
+
+                    <fieldset class="mb-3">
+                        <legend class="form-label">Forma de pago</legend>
+                        <div id="entrega-pagos" class="opciones">
+                            <!-- Las opciones salen de js/config.js -->
+                        </div>
+                    </fieldset>
+
+                    <div id="grupo-paga-con" class="mb-3">
+                        <label for="entrega-paga-con" class="form-label">¿Con cuánto pagás? <span class="texto-suave">(opcional, para tener el vuelto)</span></label>
+                        <div class="input-group has-validation">
+                            <span class="input-group-text">$</span>
+                            <input type="number" class="form-control" id="entrega-paga-con" min="1" step="1" inputmode="numeric">
+                            <div class="invalid-feedback">Tiene que ser igual o mayor al total del pedido.</div>
+                        </div>
+                    </div>
+
+                    <button type="submit" class="btn btn-whatsapp w-100 py-3 d-flex align-items-center justify-content-center gap-2">
+                        <svg class="icono" viewBox="0 0 16 16" aria-hidden="true"><path d="M13.601 2.326A7.85 7.85 0 0 0 7.994 0C3.627 0 .068 3.558.064 7.926c0 1.399.366 2.76 1.057 3.965L0 16l4.204-1.102a7.9 7.9 0 0 0 3.79.965h.004c4.368 0 7.926-3.558 7.93-7.93A7.9 7.9 0 0 0 13.6 2.326zM7.994 14.521a6.6 6.6 0 0 1-3.356-.92l-.24-.144-2.494.654.666-2.433-.156-.251a6.56 6.56 0 0 1-1.007-3.505c0-3.626 2.957-6.584 6.591-6.584a6.56 6.56 0 0 1 4.66 1.931 6.56 6.56 0 0 1 1.928 4.66c-.004 3.639-2.961 6.592-6.592 6.592m3.615-4.934c-.197-.099-1.17-.578-1.353-.646-.182-.065-.315-.099-.445.099-.133.197-.513.646-.627.775-.114.133-.232.148-.43.05-.197-.1-.836-.308-1.592-.985-.59-.525-.985-1.175-1.103-1.372-.114-.198-.011-.304.088-.403.087-.088.197-.232.296-.346.1-.114.133-.198.198-.33.065-.134.034-.248-.015-.347-.05-.099-.445-1.076-.612-1.47-.16-.389-.323-.335-.445-.34-.114-.007-.247-.007-.38-.007a.73.73 0 0 0-.529.247c-.182.198-.691.677-.691 1.654s.71 1.916.81 2.049c.098.133 1.394 2.132 3.383 2.992.47.205.84.326 1.129.418.475.152.904.129 1.246.08.38-.058 1.171-.48 1.338-.943.164-.464.164-.86.114-.943-.049-.084-.182-.133-.38-.232"/></svg>
+                        Enviar pedido por WhatsApp
+                    </button>
+                    <p class="form-text text-center mb-0">Se abre WhatsApp con el pedido escrito. Solo te falta tocar enviar.</p>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- Barra fija con el resumen del pedido -->
+    <button id="barra-pedido" class="barra-pedido d-none" type="button" data-bs-toggle="offcanvas" data-bs-target="#carritoOffcanvas" aria-controls="carritoOffcanvas">
+        <span><span id="barra-cantidad" class="barra-cantidad">0</span> Ver pedido</span>
+        <span id="barra-total" class="fw-bold">$0</span>
+    </button>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
+    <script src="js/config.js"></script>
+    <script src="js/api.js"></script>
+    <script src="js/app.js"></script>
+</body>
+</html>

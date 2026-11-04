@@ -1,0 +1,1123 @@
+/* Estilos de Artesanales. Los usa el catálogo (index.html) y, para los colores
+   de marca y los botones, también el panel (admin.html).
+   La paleta sale del logo: fondo crema, letra marrón tinta, espigas doradas
+   y los colores de la tabla (salame, miel, madera). */
+
+:root {
+    --crema: #FFF1DA;          /* fondo: el mismo del logo */
+    --papel: #FFF9EF;          /* tarjetas y paneles */
+    --papel-alto: #F7E6C6;     /* fondos de fotos, campos apagados */
+    --borde: #EAD6B4;
+    --borde-fuerte: #D9BD8E;
+    --tinta: #2B1D14;          /* texto principal: la letra del logo */
+    --tinta-suave: #6B5646;    /* texto secundario (6:1 sobre crema) */
+    --salame: #9B3A2E;         /* primario: botones y precios (8:1 con blanco) */
+    --salame-oscuro: #7E2D23;
+    --trigo: #C28E3B;          /* espigas del logo: solo adornos, no texto chico */
+    --trigo-oscuro: #8A5F1E;   /* dorado legible para texto */
+    --miel: #E0892F;           /* etiquetas de promo */
+    --madera: #995E3B;
+    --whatsapp: #25D366;
+    --lambda: #FFD60A;         /* firma de Lambda Soluciones */
+    --sombra: 0 1px 2px rgba(43, 29, 20, 0.06), 0 6px 18px rgba(43, 29, 20, 0.06);
+    --sombra-alta: 0 2px 4px rgba(43, 29, 20, 0.08), 0 14px 32px rgba(43, 29, 20, 0.12);
+    --alto-barra: 64px;
+    --fuente-script: 'Dancing Script', cursive;
+
+    /* Bootstrap con la paleta de la marca */
+    --bs-body-font-family: 'Montserrat', system-ui, sans-serif;
+    --bs-body-bg: var(--crema);
+    --bs-body-color: var(--tinta);
+    --bs-border-color: var(--borde);
+    --bs-secondary-color: var(--tinta-suave);
+    --bs-link-color: var(--salame);
+    --bs-link-hover-color: var(--salame-oscuro);
+    --bs-link-color-rgb: 155, 58, 46;
+    --bs-link-hover-color-rgb: 126, 45, 35;
+    --bs-border-radius: 10px;
+    --bs-focus-ring-color: rgba(155, 58, 46, 0.3);
+}
+
+body {
+    background-color: var(--crema);
+    color: var(--tinta);
+    font-size: 1rem;
+    line-height: 1.5;
+    -webkit-font-smoothing: antialiased;
+}
+
+/* --- Colores de marca ---------------------------------------------------- */
+
+.text-salame { color: var(--salame) !important; }
+.texto-suave { color: var(--tinta-suave); }
+
+/* Los botones se pintan con las variables de Bootstrap: así hover, activo,
+   deshabilitado y foco salen bien sin pisar nada con !important. */
+.btn {
+    --bs-btn-font-weight: 600;
+    --bs-btn-padding-y: 0.55rem;
+    --bs-btn-padding-x: 1rem;
+    min-height: 44px;
+}
+.btn-sm {
+    min-height: 36px;
+}
+
+.btn-salame {
+    --bs-btn-color: #fff;
+    --bs-btn-bg: var(--salame);
+    --bs-btn-border-color: var(--salame);
+    --bs-btn-hover-color: #fff;
+    --bs-btn-hover-bg: var(--salame-oscuro);
+    --bs-btn-hover-border-color: var(--salame-oscuro);
+    --bs-btn-active-color: #fff;
+    --bs-btn-active-bg: var(--salame-oscuro);
+    --bs-btn-active-border-color: var(--salame-oscuro);
+    --bs-btn-disabled-color: #fff;
+    --bs-btn-disabled-bg: var(--salame);
+    --bs-btn-disabled-border-color: var(--salame);
+    --bs-btn-focus-shadow-rgb: 155, 58, 46;
+}
+
+.btn-outline-salame {
+    --bs-btn-color: var(--salame);
+    --bs-btn-border-color: var(--salame);
+    --bs-btn-hover-color: #fff;
+    --bs-btn-hover-bg: var(--salame);
+    --bs-btn-hover-border-color: var(--salame);
+    --bs-btn-active-color: #fff;
+    --bs-btn-active-bg: var(--salame);
+    --bs-btn-active-border-color: var(--salame);
+    --bs-btn-disabled-color: var(--salame);
+    --bs-btn-disabled-border-color: var(--salame);
+    --bs-btn-focus-shadow-rgb: 155, 58, 46;
+}
+
+.btn-tinta {
+    --bs-btn-color: var(--crema);
+    --bs-btn-bg: var(--tinta);
+    --bs-btn-border-color: var(--tinta);
+    --bs-btn-hover-color: var(--crema);
+    --bs-btn-hover-bg: #000;
+    --bs-btn-hover-border-color: #000;
+    --bs-btn-active-color: var(--crema);
+    --bs-btn-active-bg: #000;
+    --bs-btn-active-border-color: #000;
+    --bs-btn-focus-shadow-rgb: 43, 29, 20;
+}
+
+/* Texto negro: el blanco sobre el verde de WhatsApp no se lee bien. */
+.btn-whatsapp {
+    --bs-btn-color: #000;
+    --bs-btn-bg: var(--whatsapp);
+    --bs-btn-border-color: var(--whatsapp);
+    --bs-btn-hover-color: #000;
+    --bs-btn-hover-bg: #1ebe57;
+    --bs-btn-hover-border-color: #1ebe57;
+    --bs-btn-active-color: #000;
+    --bs-btn-active-bg: #1ebe57;
+    --bs-btn-active-border-color: #1ebe57;
+    --bs-btn-focus-shadow-rgb: 37, 211, 102;
+}
+
+/* Los botones de opción (entrega, pago) marcados, en rojo salame */
+.btn-check:checked + .btn-outline-salame {
+    color: #fff;
+    background-color: var(--salame);
+    border-color: var(--salame);
+}
+
+.form-control,
+.form-select,
+.input-group-text {
+    border-color: var(--borde-fuerte);
+    background-color: #fff;
+}
+.input-group-text {
+    background-color: var(--papel-alto);
+    color: var(--tinta-suave);
+}
+.form-control::placeholder {
+    color: #9a8676;
+}
+.form-control:focus,
+.form-select:focus {
+    border-color: var(--salame);
+    box-shadow: 0 0 0 0.25rem rgba(155, 58, 46, 0.2);
+}
+.form-label {
+    font-weight: 600;
+    font-size: 0.92rem;
+}
+
+.icono {
+    width: 1.1em;
+    height: 1.1em;
+    fill: currentColor;
+    flex-shrink: 0;
+}
+/* Íconos de línea (candado, Instagram) */
+.icono-trazo {
+    fill: none;
+    stroke: currentColor;
+    stroke-width: 2;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+}
+
+/* Enlace para saltar directo a los productos con el teclado */
+.saltar:focus {
+    position: fixed;
+    top: 8px;
+    left: 8px;
+    z-index: 3000;
+    padding: 0.5rem 1rem;
+    border-radius: 8px;
+    background: var(--salame);
+    color: #fff;
+}
+
+:focus-visible {
+    outline: 3px solid rgba(155, 58, 46, 0.55);
+    outline-offset: 2px;
+}
+
+/* --- Aviso de modo prueba ------------------------------------------------- */
+
+.aviso-prueba {
+    padding: 0.5rem 0;
+    background: var(--miel);
+    color: var(--tinta);
+    font-size: 0.88rem;
+    text-align: center;
+}
+
+/* --- Barra superior ------------------------------------------------------- */
+
+.barra-superior {
+    height: var(--alto-barra);
+    background: rgba(255, 241, 218, 0.92);
+    -webkit-backdrop-filter: saturate(1.4) blur(10px);
+    backdrop-filter: saturate(1.4) blur(10px);
+    border-bottom: 1px solid var(--borde);
+}
+
+.marca {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.6rem;
+    color: var(--tinta);
+    text-decoration: none;
+}
+.marca:hover {
+    color: var(--tinta);
+}
+.marca-logo {
+    width: 44px;
+    height: 44px;
+    border-radius: 50%;
+    object-fit: cover;
+    box-shadow: 0 0 0 1px var(--borde-fuerte);
+}
+.marca-nombre {
+    font-family: var(--fuente-script);
+    font-weight: 700;
+    font-size: 1.85rem;
+    line-height: 1;
+}
+
+.btn-pedido {
+    border-radius: 50rem;
+    background: var(--papel);
+}
+.contador {
+    min-width: 1.6rem;
+    background: var(--salame);
+    color: #fff;
+    border-radius: 50rem;
+}
+.btn-pedido:hover .contador,
+.btn-pedido:active .contador {
+    background: #fff;
+    color: var(--salame);
+}
+
+/* --- Portada -------------------------------------------------------------- */
+
+.portada {
+    position: relative;
+    padding: 2rem 0 1.75rem;
+    overflow: hidden;
+}
+/* Un halo cálido detrás del logo, como la luz sobre la tabla */
+.portada::before {
+    content: '';
+    position: absolute;
+    inset: -30% -10% auto auto;
+    width: 60vw;
+    max-width: 640px;
+    aspect-ratio: 1;
+    background: radial-gradient(circle, rgba(224, 137, 47, 0.16) 0%, rgba(224, 137, 47, 0) 65%);
+    pointer-events: none;
+}
+
+.portada-grilla {
+    position: relative;
+    display: grid;
+    gap: 1.25rem;
+    align-items: center;
+    text-align: center;
+}
+
+.portada-firma {
+    margin: 0 0 0.25rem;
+    font-family: var(--fuente-script);
+    font-weight: 700;
+    font-size: 1.6rem;
+    color: var(--trigo-oscuro);
+}
+.portada-titulo {
+    margin: 0 auto 0.75rem;
+    max-width: 18ch;
+    font-size: clamp(1.65rem, 6.2vw, 3.1rem);
+    font-weight: 700;
+    line-height: 1.12;
+    letter-spacing: -0.02em;
+    text-wrap: balance;
+}
+.portada-bajada {
+    max-width: 36rem;
+    margin: 0 auto 1.25rem;
+    color: var(--tinta-suave);
+    text-wrap: pretty;
+}
+
+.portada-datos {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 0.5rem;
+    margin: 0;
+}
+.estado-local,
+.dato-enlace {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.45rem;
+    min-height: 36px;
+    padding: 0.35rem 0.85rem;
+    border: 1px solid var(--borde);
+    border-radius: 50rem;
+    background: var(--papel);
+    color: var(--tinta);
+    font-size: 0.85rem;
+    font-weight: 500;
+    text-decoration: none;
+}
+.dato-enlace .icono {
+    color: var(--salame);
+}
+.dato-enlace:hover {
+    border-color: var(--salame);
+    color: var(--tinta);
+}
+.estado-punto {
+    width: 0.55rem;
+    height: 0.55rem;
+    border-radius: 50%;
+    background: var(--trigo);
+}
+.estado-local.abierto .estado-punto {
+    background: #2f8a4c;
+    box-shadow: 0 0 0 3px rgba(47, 138, 76, 0.2);
+}
+.estado-local.cerrado .estado-punto {
+    background: #b0473a;
+}
+
+.portada-logo img {
+    width: min(58vw, 240px);
+    height: auto;
+    border-radius: 50%;
+    box-shadow: var(--sombra-alta), 0 0 0 10px rgba(255, 249, 239, 0.7);
+}
+
+/* En pantallas grandes el logo pasa al costado del texto */
+@media (min-width: 768px) {
+    .portada {
+        padding: 3rem 0 2.25rem;
+    }
+    .portada-grilla {
+        grid-template-columns: 1.4fr 1fr;
+        text-align: left;
+        gap: 2.5rem;
+    }
+    .portada-titulo,
+    .portada-bajada {
+        margin-left: 0;
+    }
+    .portada-datos {
+        justify-content: flex-start;
+    }
+    .portada-logo {
+        display: flex;
+        justify-content: center;
+    }
+    .portada-logo img {
+        width: min(32vw, 320px);
+    }
+}
+@media (max-width: 767.98px) {
+    /* En el celular el logo va arriba y más chico */
+    .portada-logo {
+        order: -1;
+    }
+    .portada {
+        padding: 1.25rem 0 1.25rem;
+    }
+    .portada-grilla {
+        gap: 0.75rem;
+    }
+    .portada-logo img {
+        width: 108px;
+        box-shadow: var(--sombra), 0 0 0 6px rgba(255, 249, 239, 0.7);
+    }
+    .portada-firma {
+        font-size: 1.35rem;
+    }
+    .portada-bajada {
+        margin-bottom: 1rem;
+        font-size: 0.95rem;
+    }
+    .buscador {
+        margin-top: 1.25rem;
+    }
+}
+
+.buscador {
+    position: relative;
+    max-width: 40rem;
+    margin: 1.75rem auto 0;
+}
+.buscador-lupa {
+    position: absolute;
+    left: 1.1rem;
+    top: 50%;
+    transform: translateY(-50%);
+    color: var(--tinta-suave);
+    pointer-events: none;
+}
+.buscador .form-control {
+    min-height: 52px;
+    padding: 0.8rem 1.1rem 0.8rem 2.9rem;
+    border-radius: 50rem;
+    background-color: var(--papel);
+    box-shadow: var(--sombra);
+}
+
+/* --- Filtros -------------------------------------------------------------- */
+
+.filtros-barra {
+    top: var(--alto-barra);
+    z-index: 1019; /* justo debajo de la barra superior */
+    padding: 0.6rem 0;
+    background: rgba(255, 241, 218, 0.95);
+    border-bottom: 1px solid var(--borde);
+}
+.filtros {
+    display: flex;
+    gap: 0.5rem;
+    overflow-x: auto;
+    scrollbar-width: none;
+}
+.filtros::-webkit-scrollbar {
+    display: none;
+}
+@media (min-width: 768px) {
+    .filtros {
+        justify-content: center;
+    }
+}
+.btn-filtro {
+    flex-shrink: 0;
+    min-height: 40px;
+    padding: 0.45rem 1.15rem;
+    border: 1px solid var(--borde-fuerte);
+    border-radius: 50rem;
+    background: var(--papel);
+    color: var(--tinta);
+    font-size: 0.9rem;
+    font-weight: 600;
+    white-space: nowrap;
+    transition: background-color 0.2s ease, border-color 0.2s ease, color 0.2s ease;
+}
+.btn-filtro:hover {
+    border-color: var(--salame);
+}
+.btn-filtro.active {
+    background: var(--tinta);
+    border-color: var(--tinta);
+    color: var(--crema);
+}
+
+/* --- Catálogo ------------------------------------------------------------- */
+
+.catalogo {
+    min-height: 50vh;
+    padding-top: 1.5rem;
+    padding-bottom: 3rem;
+    /* Al volver acá con scrollIntoView, que no quede tapado por las dos barras fijas */
+    scroll-margin-top: calc(var(--alto-barra) + 62px);
+}
+
+.card-producto {
+    background-color: var(--papel);
+    border: 1px solid var(--borde);
+    border-radius: 16px;
+    overflow: hidden;
+    box-shadow: var(--sombra);
+    transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease;
+}
+/* Solo donde hay mouse: en el celular el "hover" queda pegado después de tocar */
+@media (hover: hover) {
+    .card-producto:hover {
+        transform: translateY(-3px);
+        border-color: var(--borde-fuerte);
+        box-shadow: var(--sombra-alta);
+    }
+    .card-producto:hover .img-container img {
+        transform: scale(1.04);
+    }
+}
+
+.img-container {
+    position: relative;
+    aspect-ratio: 1 / 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    background-color: var(--papel-alto);
+}
+.img-container img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.35s ease;
+}
+.sin-imagen {
+    color: var(--tinta-suave);
+    font-size: 0.8rem;
+}
+
+.etiqueta {
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    z-index: 1;
+    padding: 3px 10px;
+    border-radius: 50rem;
+    background: var(--miel);
+    color: var(--tinta);
+    font-weight: 700;
+    font-size: 0.75rem;
+    letter-spacing: 0.02em;
+}
+.etiqueta-categoria {
+    left: auto;
+    right: 10px;
+    background: rgba(255, 249, 239, 0.92);
+    color: var(--tinta);
+    font-weight: 600;
+}
+
+/* Producto sin stock: etiqueta gris y foto apagada */
+.etiqueta-sin-stock {
+    background: #5f5147;
+    color: #fff;
+}
+.card-producto.sin-stock img {
+    opacity: 0.45;
+    filter: grayscale(0.6);
+}
+
+.tarjeta-cuerpo {
+    gap: 0.4rem;
+    padding: 0.85rem;
+}
+.tarjeta-nombre {
+    margin: 0;
+    font-size: 1rem;
+    font-weight: 700;
+    line-height: 1.3;
+    /* Dos renglones como máximo, para que todas las tarjetas queden parejas */
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 2;
+    overflow: hidden;
+}
+.tarjeta-descripcion {
+    margin: 0;
+    color: var(--tinta-suave);
+    font-size: 0.85rem;
+    line-height: 1.45;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 2;
+    overflow: hidden;
+}
+.tarjeta-precios {
+    margin: 0.25rem 0 0.15rem;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: baseline;
+    gap: 0 0.4rem;
+}
+.precio {
+    color: var(--salame);
+    font-weight: 700;
+    font-size: 1.15rem;
+}
+.precio-unidad {
+    color: var(--tinta-suave);
+    font-size: 0.8rem;
+    font-weight: 500;
+}
+.precio-tachado {
+    color: var(--tinta-suave);
+    font-size: 0.85rem;
+}
+
+@media (max-width: 575.98px) {
+    .tarjeta-cuerpo {
+        padding: 0.7rem;
+    }
+    .tarjeta-nombre {
+        font-size: 0.92rem;
+    }
+    .tarjeta-descripcion {
+        display: none; /* en dos columnas de celular no hay lugar: se ve en el pedido */
+    }
+}
+
+/* Contador  − 2 +  (en la tarjeta y en el pedido) */
+.control-cantidad {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    border: 1.5px solid var(--salame);
+    border-radius: var(--bs-border-radius);
+    background: #fff;
+}
+.control-cantidad button {
+    width: 44px;
+    height: 40px;
+    border: 0;
+    border-radius: var(--bs-border-radius);
+    background: none;
+    color: var(--salame);
+    font-size: 1.3rem;
+    font-weight: 700;
+    line-height: 1;
+    transition: background-color 0.15s ease;
+}
+.control-cantidad button:hover {
+    background: rgba(155, 58, 46, 0.08);
+}
+.control-numero {
+    min-width: 1.5rem;
+    text-align: center;
+    font-weight: 700;
+}
+
+/* Tarjetas grises mientras cargan los productos */
+.tarjeta-cargando {
+    animation: latir 0.9s ease-in-out infinite alternate;
+}
+.tarjeta-cargando .linea {
+    height: 0.9rem;
+    margin: 0.85rem;
+    border-radius: 6px;
+    background: var(--papel-alto);
+}
+.tarjeta-cargando .linea-corta {
+    width: 40%;
+}
+.tarjeta-cargando .linea-boton {
+    height: 40px;
+}
+@keyframes latir {
+    from { opacity: 1; }
+    to { opacity: 0.5; }
+}
+
+/* Mensajes cuando no hay nada para mostrar (sin resultados, error, pedido vacío) */
+.estado-vacio {
+    padding: 3rem 1rem;
+    text-align: center;
+}
+.estado-titulo {
+    margin-bottom: 0.5rem;
+    font-family: var(--fuente-script);
+    font-weight: 700;
+    font-size: 1.9rem;
+    color: var(--tinta);
+}
+
+/* --- Pie (igual que el de Las Palmeras Club) ------------------------------- */
+
+.pie {
+    margin-top: 2rem;
+}
+.pie-principal {
+    padding: 2.5rem 0;
+    background: rgba(255, 249, 239, 0.6);
+    border-top: 1px solid var(--borde);
+}
+.pie-grilla {
+    display: grid;
+    gap: 2rem;
+    text-align: center;
+}
+.pie-columna {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.6rem;
+}
+.pie-logo {
+    width: 140px;
+    height: 140px;
+    border-radius: 50%;
+    box-shadow: 0 0 0 1px var(--borde);
+}
+.pie-titulo {
+    margin: 0;
+    font-family: var(--fuente-script);
+    font-weight: 700;
+    font-size: 2rem;
+    line-height: 1.1;
+    color: var(--salame);
+}
+.pie-texto {
+    margin: 0;
+    max-width: 22rem;
+    color: var(--tinta-suave);
+    font-size: 0.9rem;
+}
+.pie-datos {
+    display: grid;
+    gap: 0.4rem;
+    margin: 0.25rem 0 0;
+    color: var(--tinta-suave);
+    font-size: 0.85rem;
+}
+.pie-datos li {
+    display: flex;
+    gap: 0.5rem;
+    align-items: flex-start;
+    justify-content: center;
+    text-align: left;
+}
+.pie-datos .icono {
+    margin-top: 0.15rem;
+    color: var(--trigo-oscuro);
+}
+.pie-datos a {
+    color: var(--tinta-suave);
+}
+.pie-datos a:hover {
+    color: var(--salame);
+}
+.pie-botones {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 0.5rem;
+}
+
+/* Botones redondeados del pie */
+.boton-secundario,
+.boton-whatsapp {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    min-height: 44px;
+    padding: 0.55rem 1.1rem;
+    border-radius: 50rem;
+    font-size: 0.88rem;
+    font-weight: 600;
+    text-decoration: none;
+    transition: background-color 0.2s ease, border-color 0.2s ease, color 0.2s ease;
+}
+.boton-secundario {
+    border: 1px solid var(--borde-fuerte);
+    background: var(--papel);
+    color: var(--tinta);
+}
+.boton-secundario:hover {
+    border-color: var(--salame);
+    color: var(--tinta);
+}
+.boton-whatsapp {
+    border: 1px solid var(--whatsapp);
+    background: var(--whatsapp);
+    color: #000;
+}
+.boton-whatsapp:hover {
+    background: #1ebe57;
+    border-color: #1ebe57;
+    color: #000;
+}
+
+.pie-legal {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.5rem;
+    margin-top: 2rem;
+    color: var(--tinta-suave);
+    font-size: 0.75rem;
+}
+
+/* Candado al panel: casi invisible */
+.pie-candado {
+    display: inline-flex;
+    padding: 0.25rem;
+    border-radius: 0.25rem;
+    color: rgba(107, 86, 70, 0.3);
+    transition: color 0.2s;
+}
+.pie-candado .icono {
+    width: 14px;
+    height: 14px;
+}
+.pie-candado:hover,
+.pie-candado:focus-visible {
+    color: var(--tinta-suave);
+}
+
+@media (min-width: 576px) {
+    .pie-grilla {
+        grid-template-columns: repeat(3, 1fr);
+        text-align: left;
+    }
+    .pie-columna {
+        align-items: flex-start;
+    }
+    .pie-datos li,
+    .pie-botones {
+        justify-content: flex-start;
+    }
+    .pie-legal {
+        flex-direction: row;
+        justify-content: space-between;
+    }
+}
+
+/* Firma de Lambda Soluciones */
+.firma-lambda {
+    position: relative;
+    display: block;
+    overflow: hidden;
+    border-top: 1px solid rgba(255, 255, 255, 0.05);
+    background: #000;
+    text-decoration: none;
+}
+.firma-puntos {
+    position: absolute;
+    inset: 0;
+    opacity: 0.4;
+    background-image: radial-gradient(rgba(255, 214, 10, 0.35) 1px, transparent 1px);
+    background-size: 22px 22px;
+    pointer-events: none;
+}
+.firma-contenido {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.75rem;
+    /* abajo deja lugar para la barra "Ver pedido" */
+    padding-top: 1.5rem;
+    padding-bottom: 6rem;
+    text-align: center;
+}
+.firma-marca {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+}
+.firma-lambda-letra {
+    display: grid;
+    place-items: center;
+    width: 44px;
+    height: 44px;
+    flex-shrink: 0;
+    border-radius: 50%;
+    box-shadow: 0 0 0 1px rgba(255, 214, 10, 0.25);
+    background: radial-gradient(circle, #2a2405 0%, #000 70%);
+    color: var(--lambda);
+    font-size: 1.5rem;
+    font-weight: 700;
+    text-shadow: 0 0 8px rgba(255, 214, 10, 0.9), 0 0 22px rgba(255, 214, 10, 0.6);
+    transition: transform 0.2s ease;
+}
+.firma-textos {
+    line-height: 1.25;
+    text-align: left;
+}
+.firma-bajada {
+    display: block;
+    color: rgba(255, 255, 255, 0.5);
+    font-size: 11px;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+}
+.firma-nombre {
+    display: block;
+    color: #fff;
+    font-size: 0.875rem;
+    font-weight: 600;
+}
+.firma-nombre span {
+    color: var(--lambda);
+}
+.firma-pastilla {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.4rem 1rem;
+    border: 1px solid rgba(255, 214, 10, 0.4);
+    border-radius: 50rem;
+    color: var(--lambda);
+    font-size: 0.75rem;
+    font-weight: 500;
+    transition: background-color 0.2s, border-color 0.2s, color 0.2s;
+}
+.firma-pastilla .icono {
+    width: 16px;
+    height: 16px;
+}
+.firma-lambda:hover .firma-lambda-letra {
+    transform: scale(1.1);
+}
+.firma-lambda:hover .firma-pastilla {
+    border-color: var(--lambda);
+    background: var(--lambda);
+    color: #000;
+}
+.firma-lambda:focus-visible {
+    outline-offset: -3px;
+    outline-color: var(--lambda);
+}
+@media (min-width: 576px) {
+    .firma-contenido {
+        flex-direction: row;
+        align-items: flex-start;
+        justify-content: space-between;
+        text-align: left;
+    }
+}
+
+/* --- Pedido (panel lateral) ----------------------------------------------- */
+
+.pedido {
+    --bs-offcanvas-bg: var(--crema);
+    --bs-offcanvas-width: 440px;
+}
+.pedido .offcanvas-header {
+    border-bottom: 1px solid var(--borde);
+}
+.pedido .offcanvas-title {
+    font-family: var(--fuente-script);
+    font-weight: 700;
+    font-size: 2rem;
+}
+.pedido-subtitulo {
+    margin-bottom: 1rem;
+    font-size: 1rem;
+    font-weight: 700;
+}
+
+.pedido-item {
+    display: flex;
+    gap: 0.75rem;
+    padding: 0.75rem 0;
+    border-bottom: 1px solid var(--borde);
+}
+.pedido-foto {
+    width: 60px;
+    height: 60px;
+    flex-shrink: 0;
+    border-radius: 12px;
+    overflow: hidden;
+    background: var(--papel-alto);
+}
+.pedido-foto img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+.pedido-info {
+    flex: 1;
+    min-width: 0;
+}
+.pedido-nombre {
+    margin: 0;
+    font-size: 0.92rem;
+    font-weight: 600;
+    line-height: 1.3;
+}
+.pedido-unidad {
+    margin: 0 0 0.4rem;
+    color: var(--tinta-suave);
+    font-size: 0.8rem;
+}
+.pedido-item .control-cantidad {
+    width: 128px;
+}
+.pedido-quitar {
+    flex-shrink: 0;
+    font-size: 0.7rem;
+}
+.pedido-total {
+    display: flex;
+    justify-content: space-between;
+    margin: 0 0 1.25rem;
+    padding: 0.75rem 0 1rem;
+    border-bottom: 1px solid var(--borde);
+    font-size: 1.3rem;
+    font-weight: 700;
+}
+
+.opciones {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+}
+
+.aviso-retiro {
+    display: flex;
+    gap: 0.6rem;
+    padding: 0.75rem 0.9rem;
+    border: 1px dashed var(--borde-fuerte);
+    border-radius: 12px;
+    background: var(--papel);
+    color: var(--tinta-suave);
+    font-size: 0.86rem;
+}
+.aviso-retiro .icono {
+    margin-top: 0.15rem;
+    color: var(--salame);
+}
+
+/* "Forma de pago" es un <legend>, que Bootstrap dibuja más grande que una etiqueta */
+.pedido legend.form-label {
+    font-size: 0.92rem;
+}
+
+/* Barra fija con el resumen del pedido. Queda por debajo del panel lateral,
+   así que cuando el pedido está abierto no hace falta ocultarla. */
+.barra-pedido {
+    position: fixed;
+    left: 50%;
+    bottom: max(16px, env(safe-area-inset-bottom));
+    transform: translateX(-50%);
+    z-index: 1030;
+    width: min(calc(100% - 32px), 480px);
+    min-height: 54px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0.85rem 1.25rem;
+    border: 0;
+    border-radius: 50rem;
+    background: var(--salame);
+    color: #fff;
+    font-weight: 600;
+    box-shadow: 0 10px 28px rgba(126, 45, 35, 0.35);
+    animation: subirBarra 0.3s ease;
+}
+.barra-cantidad {
+    display: inline-block;
+    min-width: 1.6rem;
+    margin-right: 0.5rem;
+    padding: 0 0.4rem;
+    border-radius: 50rem;
+    background: var(--crema);
+    color: var(--salame);
+    text-align: center;
+    font-weight: 700;
+}
+@keyframes subirBarra {
+    from { transform: translate(-50%, 20px); opacity: 0; }
+    to { transform: translate(-50%, 0); opacity: 1; }
+}
+
+/* --- Animación de entrada ------------------------------------------------- */
+
+/* Todo por CSS: aunque el JavaScript no cargue, la pantalla de entrada se va sola. */
+.preloader {
+    position: fixed;
+    inset: 0;
+    z-index: 2000;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 1.25rem;
+    background-color: var(--crema);
+    animation: ocultarPreloader 0.45s ease 1.4s forwards;
+}
+/* Ya se mostró en esta visita (ver el script del <head> de index.html) */
+.sin-preloader .preloader {
+    display: none;
+}
+.preloader-logo {
+    width: min(60vw, 220px);
+    height: auto;
+    border-radius: 50%;
+    opacity: 0;
+    transform: scale(0.85);
+    animation: aparecerLogo 0.6s cubic-bezier(0.2, 0.8, 0.2, 1) 0.1s forwards;
+}
+/* Una línea dorada que se dibuja como el subrayado del logo */
+.preloader-linea {
+    width: 120px;
+    height: 3px;
+    border-radius: 3px;
+    background: var(--trigo);
+    transform: scaleX(0);
+    transform-origin: left;
+    animation: dibujarLinea 0.7s ease 0.5s forwards;
+}
+
+@keyframes aparecerLogo {
+    to { opacity: 1; transform: scale(1); }
+}
+@keyframes dibujarLinea {
+    to { transform: scaleX(1); }
+}
+@keyframes ocultarPreloader {
+    to { opacity: 0; visibility: hidden; }
+}
+
+/* Quien pidió menos movimiento en su sistema no ve animaciones */
+@media (prefers-reduced-motion: reduce) {
+    .preloader {
+        display: none;
+    }
+    .card-producto,
+    .img-container img,
+    .btn-filtro,
+    .tarjeta-cargando,
+    .barra-pedido {
+        transition: none;
+        animation: none;
+    }
+    .card-producto:hover,
+    .card-producto:hover .img-container img {
+        transform: none;
+    }
+}

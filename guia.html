@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="es" data-bs-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Es una guía para el dueño: no tiene que aparecer en Google -->
+    <meta name="robots" content="noindex, nofollow">
+    <title>Artesanales - Cómo usar tu catálogo</title>
+    <meta name="theme-color" content="#FFF1DA">
+    <link rel="icon" href="img/favicon.png" type="image/png">
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@600;700&family=Montserrat:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/style.css">
+    <style>
+        .guia { max-width: 960px; padding-top: 2rem; padding-bottom: 3rem; }
+        .guia h1 { font-family: var(--fuente-script); font-weight: 700; font-size: clamp(2.2rem, 7vw, 3.2rem); text-align: center; margin-bottom: 0.25rem; }
+        .guia-bajada { text-align: center; color: var(--tinta-suave); margin-bottom: 1.5rem; }
+        .guia video { display: block; width: 100%; height: auto; border-radius: 16px; background: var(--papel-alto); box-shadow: var(--sombra-alta); }
+        .guia h2 { font-weight: 700; font-size: 1.15rem; margin: 2.25rem 0 1rem; }
+        .pasos { display: grid; gap: 0.75rem; padding: 0; list-style: none; counter-reset: paso; }
+        .pasos li { counter-increment: paso; display: flex; gap: 0.9rem; padding: 0.9rem 1rem; border: 1px solid var(--borde); border-radius: 14px; background: var(--papel); }
+        .pasos li::before { content: counter(paso); flex-shrink: 0; display: grid; place-items: center; width: 2rem; height: 2rem; border-radius: 50%; background: var(--salame); color: #fff; font-weight: 700; }
+        .pasos strong { display: block; }
+        .pasos span { color: var(--tinta-suave); font-size: 0.92rem; }
+        .guia-botones { display: flex; flex-wrap: wrap; justify-content: center; gap: 0.5rem; margin-top: 2rem; }
+    </style>
+</head>
+<body>
+    <header class="barra-superior sticky-top">
+        <div class="container d-flex justify-content-between align-items-center h-100">
+            <a class="marca" href="./">
+                <img src="img/logo.jpg" alt="" width="44" height="44" class="marca-logo">
+                <span class="marca-nombre">Artesanales</span>
+            </a>
+            <a class="btn btn-sm btn-outline-salame" href="./">Ver catálogo</a>
+        </div>
+    </header>
+
+    <main class="container guia">
+        <h1>Cómo usar tu catálogo</h1>
+        <p class="guia-bajada">Una guía de dos minutos y medio: cómo lo usan tus clientes y cómo manejar tus productos.</p>
+
+        <video controls preload="metadata" playsinline poster="guia/portada-video.jpg" width="1920" height="1080">
+            <source src="guia/como-usar-el-catalogo.mp4" type="video/mp4">
+            Tu navegador no puede reproducir el video. <a href="guia/como-usar-el-catalogo.mp4">Descargalo acá</a>.
+        </video>
+
+        <h2>Resumen, paso a paso</h2>
+        <ol class="pasos">
+            <li><div><strong>Entrar al panel</strong><span>Bajá hasta el final del catálogo y tocá el candado chiquito, al lado de “Todos los derechos reservados”. Escribí tu clave de acceso.</span></div></li>
+            <li><div><strong>Agregar un producto</strong><span>“+ Agregar producto”: nombre, descripción, categoría, cómo se vende (1/4 kg, horma, unidad), precio y foto. Guardar.</span></div></li>
+            <li><div><strong>Cambiar un precio o poner promo</strong><span>“Editar” en el producto. Con “Precio promo” el catálogo muestra el precio anterior tachado y la etiqueta ¡Promo!.</span></div></li>
+            <li><div><strong>Sin stock</strong><span>“Editar” y apagá “Hay stock”. Se ve en gris y nadie lo puede pedir. Cuando vuelve a entrar, lo prendés.</span></div></li>
+            <li><div><strong>Ordenar</strong><span>Con las flechas ↑ ↓ o arrastrando desde los puntitos ⠿. Se guarda solo.</span></div></li>
+            <li><div><strong>Borrar</strong><span>“Borrar” y confirmá. No se puede deshacer.</span></div></li>
+            <li><div><strong>Ver los cambios</strong><span>El catálogo tarda uno o dos minutos en actualizarse. Recargá la página.</span></div></li>
+            <li><div><strong>Practicar sin riesgo</strong><span>En la pantalla de ingreso, “Probar el panel sin guardar cambios”: lo que hagas queda solo en tu navegador.</span></div></li>
+        </ol>
+
+        <div class="guia-botones">
+            <a class="btn btn-salame" href="admin.html">Ir al panel</a>
+            <a class="btn btn-outline-salame" href="guia/como-usar-el-catalogo.mp4" download>Descargar el video</a>
+        </div>
+    </main>
+</body>
+</html>

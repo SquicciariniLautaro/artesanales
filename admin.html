@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="es" data-bs-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- El panel no tiene que aparecer en Google -->
+    <meta name="robots" content="noindex, nofollow">
+    <title>Artesanales - Panel</title>
+    <meta name="theme-color" content="#FFF1DA">
+    <link rel="icon" href="img/favicon.png" type="image/png">
+
+    <!-- Bootstrap CSS CDN -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@600;700&family=Montserrat:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/admin.css">
+</head>
+<body>
+
+    <header class="barra-superior sticky-top">
+        <div class="container d-flex justify-content-between align-items-center h-100">
+            <span class="marca">
+                <img src="img/logo.jpg" alt="" width="44" height="44" class="marca-logo">
+                <span class="marca-nombre">Panel</span>
+            </span>
+            <div class="d-flex gap-2">
+                <a class="btn btn-sm btn-outline-salame" href="index.html" target="_blank" rel="noopener">Ver catálogo</a>
+                <button id="btn-salir" class="btn btn-sm btn-tinta d-none" type="button">Salir</button>
+            </div>
+        </div>
+    </header>
+
+    <main class="container my-4">
+
+        <div id="aviso-prueba" class="alert alerta-prueba d-none" role="status">
+            <strong>Modo prueba.</strong> Los cambios se guardan solo en este navegador y no llegan al sitio publicado.
+            En este mismo navegador, el catálogo muestra estos cambios hasta que toques <em>Salir</em>.
+        </div>
+
+        <!-- INGRESO -->
+        <section id="vista-ingreso" class="d-none mx-auto panel-ingreso">
+            <div class="tarjeta-ingreso">
+                <img src="img/logo.jpg" alt="Artesanales" width="120" height="120" class="ingreso-logo">
+                <h1 class="ingreso-titulo">Ingresar al panel</h1>
+                <form id="form-ingreso" novalidate>
+                    <div class="mb-3">
+                        <label for="ingreso-clave" class="form-label">Clave de acceso</label>
+                        <input type="password" class="form-control" id="ingreso-clave" autocomplete="current-password" spellcheck="false" required aria-describedby="ingreso-ayuda">
+                        <div id="ingreso-ayuda" class="form-text">Es la clave que te pasamos al entregarte el sitio (empieza con <code>github_pat_</code>).</div>
+                    </div>
+                    <div class="form-check mb-3">
+                        <input class="form-check-input" type="checkbox" id="ingreso-recordar" checked>
+                        <label class="form-check-label" for="ingreso-recordar">Recordarla en este dispositivo</label>
+                    </div>
+                    <p id="ingreso-error" class="text-danger small d-none" role="alert"></p>
+                    <button type="submit" class="btn btn-salame w-100">Entrar</button>
+                </form>
+                <div class="separador"><span>o</span></div>
+                <button type="button" id="btn-probar" class="btn btn-outline-salame w-100">Probar el panel sin guardar cambios</button>
+                <p class="form-text text-center mt-2 mb-0">Sirve para ver cómo funciona: lo que cambies queda solo en este navegador.</p>
+            </div>
+        </section>
+
+        <!-- PRODUCTOS -->
+        <section id="vista-panel" class="d-none">
+            <div class="d-flex justify-content-between align-items-center flex-wrap gap-2 mb-2">
+                <h1 class="panel-titulo mb-0">Productos <span id="cantidad-productos" class="texto-suave fs-6"></span></h1>
+                <button id="btn-agregar" class="btn btn-salame" type="button">+ Agregar producto</button>
+            </div>
+            <p class="texto-suave small mb-1">
+                Este es el orden en que se ven en el catálogo. Para cambiarlo, arrastrá un producto desde
+                <span aria-hidden="true">⠿</span> o usá las flechas. Se guarda solo.
+            </p>
+            <p id="aviso-demora" class="texto-suave small mb-3">
+                Después de guardar, el catálogo publicado tarda uno o dos minutos en mostrar los cambios.
+            </p>
+
+            <p id="lista-vacia" class="text-center texto-suave py-5 d-none">Todavía no hay productos. Agregá el primero.</p>
+            <ul id="lista-productos" class="list-unstyled mb-0">
+                <!-- Los productos se inyectan con JavaScript -->
+            </ul>
+        </section>
+
+        <!-- Mientras se cargan los datos -->
+        <section id="vista-cargando" class="text-center py-5">
+            <div class="spinner-border text-salame" role="status"><span class="visually-hidden">Cargando…</span></div>
+        </section>
+    </main>
+
+    <!-- Formulario de producto (agregar y editar) -->
+    <div class="modal fade" id="modal-producto" tabindex="-1" aria-labelledby="modal-producto-titulo" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-scrollable">
+            <form id="form-producto" class="modal-content" novalidate>
+                <div class="modal-header">
+                    <h2 class="modal-title fs-5" id="modal-producto-titulo">Agregar producto</h2>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Cerrar"></button>
+                </div>
+                <div class="modal-body">
+                    <div class="mb-3">
+                        <label for="prod-nombre" class="form-label">Nombre</label>
+                        <input type="text" class="form-control" id="prod-nombre" maxlength="80" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="prod-descripcion" class="form-label">Descripción <span class="texto-suave">(opcional)</span></label>
+                        <textarea class="form-control" id="prod-descripcion" rows="2" maxlength="160" placeholder="Una o dos líneas: cómo es, con qué va bien…"></textarea>
+                    </div>
+                    <div class="row g-3 mb-3">
+                        <div class="col-sm-6">
+                            <label for="prod-categoria" class="form-label">Categoría</label>
+                            <!-- Las opciones salen de CATEGORIAS en js/config.js -->
+                            <select class="form-select" id="prod-categoria" required></select>
+                        </div>
+                        <div class="col-sm-6">
+                            <label for="prod-unidad" class="form-label">Se vende por</label>
+                            <input type="text" class="form-control" id="prod-unidad" maxlength="30" list="unidades" placeholder="unidad, 1/4 kg, horma…">
+                            <datalist id="unidades">
+                                <option value="unidad">
+                                <option value="1/4 kg">
+                                <option value="1/2 kg">
+                                <option value="kg">
+                                <option value="horma">
+                                <option value="frasco">
+                            </datalist>
+                        </div>
+                    </div>
+                    <div class="row g-3 mb-3">
+                        <div class="col-6">
+                            <label for="prod-precio" class="form-label">Precio</label>
+                            <div class="input-group">
+                                <span class="input-group-text">$</span>
+                                <input type="number" class="form-control" id="prod-precio" min="1" step="1" inputmode="numeric" required>
+                            </div>
+                        </div>
+                        <div class="col-6">
+                            <label for="prod-promo" class="form-label">Precio promo <span class="texto-suave">(opcional)</span></label>
+                            <div class="input-group">
+                                <span class="input-group-text">$</span>
+                                <input type="number" class="form-control" id="prod-promo" min="1" step="1" inputmode="numeric">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="mb-3">
+                        <label for="prod-foto" class="form-label">Foto</label>
+                        <div class="d-flex align-items-center gap-3">
+                            <div id="prod-foto-vista" class="miniatura miniatura-grande"></div>
+                            <div class="flex-grow-1">
+                                <input type="file" class="visually-hidden" id="prod-foto" accept="image/*">
+                                <label for="prod-foto" class="btn btn-sm btn-outline-salame boton-foto">Elegir foto</label>
+                                <span id="prod-foto-nombre" class="d-block small texto-suave text-truncate mt-1"></span>
+                                <button type="button" id="btn-quitar-foto" class="btn btn-sm btn-link text-danger px-0 d-none">Quitar foto</button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-check form-switch">
+                        <input class="form-check-input" type="checkbox" role="switch" id="prod-disponible" checked>
+                        <label class="form-check-label" for="prod-disponible">Hay stock</label>
+                        <div class="form-text">Si lo apagás, se sigue viendo en el catálogo pero como “Sin stock” y no se puede pedir.</div>
+                    </div>
+                    <p id="prod-error" class="text-danger small mt-3 mb-0 d-none" role="alert"></p>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">Cancelar</button>
+                    <button type="submit" id="btn-guardar" class="btn btn-salame">Guardar</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Confirmación de borrado -->
+    <div class="modal fade" id="modal-borrar" tabindex="-1" aria-labelledby="modal-borrar-titulo" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered modal-sm">
+            <div class="modal-content">
+                <div class="modal-body">
+                    <h2 class="fs-5" id="modal-borrar-titulo">¿Borrar este producto?</h2>
+                    <p class="mb-0"><strong id="borrar-nombre"></strong> deja de verse en el catálogo. No se puede deshacer.</p>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">Cancelar</button>
+                    <button type="button" id="btn-confirmar-borrar" class="btn btn-danger">Borrar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Avisos cortos ("Orden guardado", errores) -->
+    <div class="toast-container position-fixed bottom-0 start-50 translate-middle-x p-3">
+        <div id="aviso" class="toast align-items-center border-0" role="status" aria-live="polite" aria-atomic="true">
+            <div class="d-flex">
+                <div id="aviso-texto" class="toast-body fw-bold"></div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
+    <!-- SortableJS: arrastrar para ordenar, también en el celular -->
+    <script src="https://cdn.jsdelivr.net/npm/sortablejs@1.15.7/Sortable.min.js" integrity="sha384-DgmC6Xe2bSN2WjTDXzWYbUbxyhNP+NNkGDR/g78pCXV7E7rcVTGxVg0uIVCUUcBc" crossorigin="anonymous"></script>
+    <script src="js/config.js"></script>
+    <script src="js/api.js"></script>
+    <script src="js/modo-prueba.js"></script>
+    <script src="js/api-admin.js"></script>
+    <script src="js/admin.js"></script>
+</body>
+</html>

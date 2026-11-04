@@ -1,0 +1,35 @@
+[
+  {
+    "id": "queso-cabra-finas-hierbas",
+    "nombre": "Queso de cabra con finas hierbas",
+    "descripcion": "Horma artesanal de leche de cabra con orégano, ají y especias.",
+    "categoria": "Quesos",
+    "precio": 9500,
+    "precio_promo": null,
+    "unidad": "horma",
+    "imagen_url": "img/productos/queso-cabra-finas-hierbas.jpg",
+    "disponible": true
+  },
+  {
+    "id": "queso-cabra-fresco",
+    "nombre": "Queso de cabra fresco",
+    "descripcion": "Suave y cremoso, ideal para tablas, sándwiches o para fundir.",
+    "categoria": "Quesos",
+    "precio": 6500,
+    "precio_promo": null,
+    "unidad": "1/2 kg",
+    "imagen_url": "img/productos/queso-cabra-fresco.jpg",
+    "disponible": true
+  },
+  {
+    "id": "salame-artesanal",
+    "nombre": "Salame artesanal",
+    "descripcion": "Estacionado de forma natural, con el sabor de siempre.",
+    "categoria": "Fiambres",
+    "precio": 7000,
+    "precio_promo": null,
+    "unidad": "unidad",
+    "imagen_url": "img/productos/salame-artesanal.jpg",
+    "disponible": true
+  }
+]
