@@ -9,6 +9,8 @@ Güemes 1253, San Salvador de Jujuy) con pedido por WhatsApp y panel de administ
 - `admin.html`: el panel. Se entra desde el candado chiquito al final del pie. Permite
   agregar, editar y borrar productos, marcarlos sin stock, poner precio promo y elegir el
   orden en que se ven.
+- `guia.html`: un video con voz que explica, paso a paso, cómo usar el catálogo y el panel
+  (`guia/como-usar-el-catalogo.mp4`), con un resumen escrito abajo. Es para pasarle al cliente.
 - `data/productos.json`: la lista de productos. **No hay base de datos**: el panel cambia
   este archivo haciendo un commit en este repositorio y GitHub Pages vuelve a publicar.
 

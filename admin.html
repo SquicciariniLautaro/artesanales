@@ -149,7 +149,9 @@
                         <div class="d-flex align-items-center gap-3">
                             <div id="prod-foto-vista" class="miniatura miniatura-grande"></div>
                             <div class="flex-grow-1">
-                                <input type="file" class="form-control" id="prod-foto" accept="image/*">
+                                <input type="file" class="visually-hidden" id="prod-foto" accept="image/*">
+                                <label for="prod-foto" class="btn btn-sm btn-outline-salame boton-foto">Elegir foto</label>
+                                <span id="prod-foto-nombre" class="d-block small texto-suave text-truncate mt-1"></span>
                                 <button type="button" id="btn-quitar-foto" class="btn btn-sm btn-link text-danger px-0 d-none">Quitar foto</button>
                             </div>
                         </div>

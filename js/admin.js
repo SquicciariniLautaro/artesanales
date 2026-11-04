@@ -301,6 +301,7 @@ function abrirFormulario(prod) {
     document.getElementById('prod-promo').value = prod && prod.precio_promo ? prod.precio_promo : '';
     document.getElementById('prod-disponible').checked = prod ? prod.disponible : true;
     document.getElementById('prod-foto').value = '';
+    document.getElementById('prod-foto-nombre').textContent = '';
     mostrarFoto(prod ? urlDeFoto(prod.imagen_url) : '');
     mostrarError('prod-error', '');
     modalProducto.show();
@@ -318,6 +319,7 @@ function elegirFoto(evento) {
     if (!archivo) return;
     fotoElegida = archivo;
     fotoQuitada = false;
+    document.getElementById('prod-foto-nombre').textContent = archivo.name;
     mostrarFoto(URL.createObjectURL(archivo));
 }
 
@@ -325,6 +327,7 @@ function quitarFoto() {
     fotoElegida = null;
     fotoQuitada = true;
     document.getElementById('prod-foto').value = '';
+    document.getElementById('prod-foto-nombre').textContent = '';
     mostrarFoto('');
 }
 

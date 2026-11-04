@@ -126,6 +126,12 @@
     font-size: 0.75rem;
 }
 
+/* El campo de archivo va escondido: se usa el botón "Elegir foto" */
+#prod-foto:focus-visible + .boton-foto {
+    outline: 3px solid rgba(155, 58, 46, 0.55);
+    outline-offset: 2px;
+}
+
 /* Interruptor "Hay stock" con el color de la marca */
 #form-producto .form-check-input:checked {
     background-color: var(--salame);
