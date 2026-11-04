@@ -1,0 +1,142 @@
+/* Estilos del panel (admin.html). Los colores de marca vienen de style.css. */
+
+.text-salame { color: var(--salame) !important; }
+
+.alerta-prueba {
+    border: 1px solid var(--miel);
+    background: rgba(224, 137, 47, 0.14);
+    color: var(--tinta);
+}
+
+/* --- Ingreso -------------------------------------------------------------- */
+
+.panel-ingreso {
+    max-width: 420px;
+    margin-top: 6vh;
+}
+.tarjeta-ingreso {
+    padding: 2rem 1.5rem;
+    border: 1px solid var(--borde);
+    border-radius: 20px;
+    background: var(--papel);
+    box-shadow: var(--sombra-alta);
+}
+.ingreso-logo {
+    display: block;
+    width: 120px;
+    height: 120px;
+    margin: 0 auto 0.5rem;
+    border-radius: 50%;
+}
+.ingreso-titulo,
+.panel-titulo {
+    font-family: var(--fuente-script);
+    font-weight: 700;
+    font-size: 2.2rem;
+}
+.ingreso-titulo {
+    margin-bottom: 1.25rem;
+    text-align: center;
+}
+.separador {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    margin: 1.25rem 0;
+    color: var(--tinta-suave);
+    font-size: 0.85rem;
+}
+.separador::before,
+.separador::after {
+    content: '';
+    flex: 1;
+    height: 1px;
+    background: var(--borde);
+}
+
+/* --- Lista de productos --------------------------------------------------- */
+
+.item-producto {
+    background-color: var(--papel);
+    border: 1px solid var(--borde);
+    border-radius: 14px;
+    box-shadow: var(--sombra);
+}
+
+.item-info {
+    flex: 1 1 0;
+    min-width: 0; /* deja que el nombre largo se corte con "..." */
+}
+
+/* En el celular los botones van en un renglón aparte, debajo del nombre */
+.item-acciones {
+    flex: 1 0 100%;
+}
+.item-acciones .btn {
+    min-width: 44px;
+    min-height: 40px;
+}
+@media (min-width: 768px) {
+    .item-acciones {
+        flex: 0 0 auto;
+    }
+}
+
+/* Agarre para arrastrar */
+.agarre {
+    cursor: grab;
+    color: var(--trigo-oscuro);
+    font-size: 1.4rem;
+    line-height: 1;
+    padding: 8px 4px;
+    touch-action: none; /* en el celular, arrastrar desde acá no mueve la página */
+    user-select: none;
+}
+.agarre:active {
+    cursor: grabbing;
+}
+
+/* Hueco que marca dónde va a caer el producto mientras se arrastra */
+.sortable-ghost {
+    opacity: 0.35;
+}
+
+.miniatura {
+    width: 52px;
+    height: 52px;
+    flex-shrink: 0;
+    border-radius: 10px;
+    overflow: hidden;
+    background-color: var(--papel-alto);
+    color: var(--tinta-suave);
+    font-size: 0.6rem;
+    text-align: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.miniatura img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+.miniatura-grande {
+    width: 92px;
+    height: 92px;
+    font-size: 0.75rem;
+}
+
+/* Interruptor "Hay stock" con el color de la marca */
+#form-producto .form-check-input:checked {
+    background-color: var(--salame);
+    border-color: var(--salame);
+}
+
+.modal-content {
+    background: var(--crema);
+}
+
+.toast.text-bg-success {
+    background-color: var(--tinta) !important;
+    color: var(--crema) !important;
+}
